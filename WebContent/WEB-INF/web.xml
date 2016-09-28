@@ -6,9 +6,12 @@
 
    <display-name>Spring/Hibernate Web MVC Application</display-name>
    
+    <!--  loading the hibernate info xml context for Spring in web.xml-->
+    <!--  probably should move to the MainWeb xml -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/hibernateDataAccessContext.xml</param-value>
+		<!-- <param-value>/WEB-INF/applicationContext*.xml</param-value>  another example -->
 	</context-param>
 	
 <!--	
@@ -31,7 +34,7 @@
       <!--  must have a XXXXXXX-servlet.xml file associated, e.g. MainWeb-servlet.xml -->
       <!-- <servlet-name>DispatcherServlet</servlet-name> -->
       <servlet-name>MainWeb</servlet-name>
-      <servlet-class> org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
       <load-on-startup>1</load-on-startup>
    </servlet>
    

@@ -1,34 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<link rel="stylesheet" href="./css/customer.css" type="text/css"/>
-    <title>Add Customer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Add Customer</title>
+    <!-- had to define in MainWeb-servlet.xml: <mvc:resources mapping="/resources/**" location="/resources/" /> -->
+    <link rel="stylesheet" href='<c:url value="/resources/css/bootstrap.css" />' />
 </head>
+
 <body>
 
-<h2>Customer Information</h2>
-<form:form method="POST" action="/HelloSpringWeb/addCustomer">
-   <table>
-    <tr>
-        <td><form:label path="firstName"><spring:message code="customer.firstname"/></form:label></td>
-        <td><form:input path="firstName" /></td>
-    </tr>
-    <tr>
-        <td><form:label path="lastName"><spring:message code="customer.lastname"/></form:label></td>
-        <td><form:input path="lastName" /></td>
-    </tr>
-    <tr>
-        <td><form:label path="phone"><spring:message code="customer.phone"/></form:label></td>
-        <td><form:input path="phone" /></td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <input type="submit" value="Submit"/>
-        </td>
-    </tr>
-</table>  
+<div class="generic-container">
+<div class="panel panel-default">
+<div class="panel-heading"><span class="lead">Customer Information</span></div>
+
+<form:form method="POST" action="/SpringWeb/addCustomer">
+
+<div class="form-group">
+	<div class="form-group row">
+		<label for="example-text-input" class="col-xs-2 col-form-label">
+			<spring:message code="customer.firstname"/>
+		</label>
+		<div class="col-xs-10">
+			<form:input path="firstName" cssClass="form-control" />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-xs-2 col-form-label">
+			<spring:message code="customer.lastname"/>
+		</label>
+		<div class="col-xs-10">
+			<!-- <input class="form-control" type="text" value="last name here" id="lastName"> -->
+			<form:input path="lastName" cssClass="form-control" />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="example-text-input" class="col-xs-2 col-form-label">
+			<spring:message code="customer.phone"/>
+		</label>
+		<div class="col-xs-10">
+			<!-- <input class="form-control" type="text" value="phone number here" id="phone"> -->
+			<form:input path="phone" cssClass="form-control" />
+		</div>
+	</div>
+	<input type="submit" value="Submit"/>
+</div>
+
+
 </form:form>
+
+</div>
+</div>
+
 </body>
 </html>

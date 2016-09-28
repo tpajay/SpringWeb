@@ -20,17 +20,17 @@
 	 
 	<context:property-placeholder location="WEB-INF/jdbc.properties"/>
 
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"> 
-	    <property name="driverClassName" value="${jdbc.driverClassName}"/> 
-	    <property name="url" value="${jdbc.url}"/> 
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.driverClassName}"/>
+	    <property name="url" value="${jdbc.url}"/>
 	    <property name="username" value="${jdbc.username}"/>
 	    <property name="password" value="${jdbc.password}"/>
 	</bean>
 
 <!-- 
-<property name="maxActive" value="${dbcp.maxActive}"/> 
-<property name="maxIdle" value="${dbcp.maxIdle}"/> 
-<property name="maxWait" value="${dbcp.maxWait}"/> 
+<property name="maxActive" value="${dbcp.maxActive}"/>
+<property name="maxIdle" value="${dbcp.maxIdle}"/>
+<property name="maxWait" value="${dbcp.maxWait}"/>
 <value>classpath:hibernate.cfg.xml</value>
  -->
 
@@ -51,6 +51,7 @@
 	    <property name="annotatedClasses">
             <list>
                 <value>com.springhibernatetest.beans.Customer</value>
+                <value>com.springhibernatetest.beans.CustomerRecord</value>
             </list>
         </property>
 	</bean>

@@ -1,6 +1,7 @@
 package com.springhibernatetest.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,7 +33,12 @@ public class CustomerServiceDaoImpl implements CustomerServiceDao {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> CustomerServiceDaoImpl, getById(), customerId: " + customerId);
 		
 		//https://docs.jboss.org/hibernate/core/4.2/javadocs/org/hibernate/Session.html
-		return (Customer)sessionFactory.getCurrentSession().get(Customer.class, customerId);
+		Session session = sessionFactory.getCurrentSession();
+		Customer cust = (Customer)session.get(Customer.class, customerId);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> CustomerServiceDaoImpl, custLastname: " + cust.getLastName());
+
+		return cust;
+		//return (Customer)sessionFactory.getCurrentSession().get(Customer.class, customerId);
 	}
 	 
 	@Transactional(readOnly = true)
@@ -64,9 +70,20 @@ public class CustomerServiceDaoImpl implements CustomerServiceDao {
 	public void save(Customer customer) {
 		sessionFactory.getCurrentSession().merge(customer);
 	}
+	
+	public void update(Customer customer) {
+		sessionFactory.getCurrentSession().save(customer);
+	}
 	 
 	public void delete(Customer customer) {
 		sessionFactory.getCurrentSession().delete(customer);
 	}
+	
+	public void delete(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Customer cust = (Customer)session.get(Customer.class, id);
+		if (cust != null)
+			sessionFactory.getCurrentSession().delete(cust);
+	}	
 	 
 }

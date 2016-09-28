@@ -3,9 +3,19 @@ package com.springhibernatetest.beans;
 //import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 @Table(name="CUSTOMER")
@@ -37,6 +47,20 @@ public class Customer {
 	@Column(name="PHONE")
 	private String phone;
 	
+	@JsonIgnore
+	@OneToMany(targetEntity=CustomerRecord.class, cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name = "custId", referencedColumnName = "customerId")
+	//@OrderBy("custid, recid")
+    private Set records;
+	
+	public Set getRecords() {
+		return records;
+	}
+
+	public void setRecords(Set records) {
+		this.records = records;
+	}
+
 	public Customer() {}
 	
 	public Customer (Integer id,

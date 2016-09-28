@@ -45,8 +45,13 @@ public class CustomerServiceImpl implements CustomerService {
 	public void saveCustomer(Customer customer) {
 		customerDao.save(customer);
 	}
+	
 	public void save(Customer customer) {
 		customerDao.save(customer);
+	}
+	
+	public void update(Customer customer) {
+		customerDao.update(customer);
 	}	
 	 
 	//public void deleteCustomer(Customer customer) {
@@ -54,6 +59,10 @@ public class CustomerServiceImpl implements CustomerService {
 	//}	
 	public void delete(Customer customer) {
 		customerDao.delete(customer);
-	}	
+	}
+	
+	public void delete(int id) {
+		customerDao.delete(id);
+	}
  
 }
